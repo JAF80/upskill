@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <HEAD>
+        <TITLE>Test Input</TITLE>
+			<script language="javascript" src="http://code.jquery.com/jquery.min.js"></script>
+            <SCRIPT LANGUAGE="JavaScript">
+                function testResults (form) {
+	                var sName = form.name.value;
+	                var sAge = form.age.value;
+	                if (sName==""){
+		                alert ("Please fill your name");
+		                return
+	                }
+	                if (sAge==""){
+		                alert ("Please fill your age");
+		                return;
+	                } else {
+		                if(isNaN(parseInt(sAge))==false){
+			                if(parseInt(sAge) >110 || parseInt(sAge)<0){
+				                alert ("Please input an age between 0 and 110");
+				                return;
+			                }
+		                } else {
+			                alert ("Please input a valid number");
+			                return;
+		                }
+	                }
+					$.ajax({
+						type: "POST",
+						url: "/users",
+						data: `{ "username": "${sName}", "age": ${sAge} }`,
+						contentType: "application/json; charset=utf-8",
+						dataType: "json",
+						success: function () { alert ("ajax send was ok") },
+						failure: function () { alert ("ajax was not ok") }
+					})
+                }
+            </SCRIPT>
+    </HEAD>
+    <BODY>
+        <FORM NAME="myform" ACION="" METHOD="GET">
+         Enter your name: <BR><INPUT TYPE="text" NAME="name" VALUE=""><P>
+         Enter your age: <BR><INPUT TYPE="text" NAME="age" VALUE=""></P>
+         <INPUT TYPE="button" NAME="button" Value="Send" onClick="if(1==1) testResults(this.form)">
+        </FORM>
+    </BODY>
+</HTML>
+
