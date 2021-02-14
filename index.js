@@ -55,12 +55,12 @@ app.get("/topic", function myFC1(req, res) {
     res.send([1,2,3])
 });
 
-app.get("/topic/:id", myFC2(req, res) {
+app.get("/topic/:id", function myFC2(req, res) {
     console.log("entrei na rota /topic/:id com o verbo http get");
     res.send([1 ])
 });
 
-app.listen (8080, myFC3() {
+app.listen (8080, function myFC3() {
         console.log("listen on port 8080");
         connection = mysql.createConnection({
          host: 'localhost',
